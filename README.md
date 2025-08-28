@@ -1,19 +1,19 @@
-Metal Prices App
+📱 Metal Prices App
 
 A React Native application that displays real-time prices of precious metals (Gold, Silver, Platinum, Palladium).
 The app is built with Redux Toolkit + Redux-Saga for state management and API handling, and React Navigation for screen navigation.
 
- Features
+🚀 Features
 
- Fetch and display real-time metal prices (24k price).
+📊 Fetch and display real-time metal prices (24k price).
 
- Each metal shows its own loader until the data is fetched.
+⏳ Each metal shows its own loader until the data is fetched.
 
- Shows time & date for the price fetched.
+🕒 Shows time & date for the price fetched.
 
- Handles API errors (shows error messages when request fails).
+🔄 Handles API errors (shows error messages when request fails).
 
- Detail Screen for each metal with:
+📑 Detail Screen for each metal with:
 
 Current 24k Price
 
@@ -23,17 +23,25 @@ Previous Open Price
 
 Date & Time
 
-Clean & attractive UI with styled cards.
+🎨 Clean & attractive UI with styled cards.
 
-Powered by GoldAPI for fetching data.
+⛓ Powered by GoldAPI for fetching data.
 
-API Used
+🛠️ Tech Stack
 
-GoldAPI.io
+React Native (0.80.2)
 
-Required an API Key → stored in metalsSaga.js
+React (19.1.0)
 
-Approach
+Redux Toolkit (2.8.2)
+
+Redux-Saga (1.2.3)
+
+React Navigation (7.x)
+
+Axios (for API calls)
+
+📖 Approach
 
 State Management:
 
