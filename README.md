@@ -1,98 +1,136 @@
 📱 Metal Prices App
 
-A React Native application that displays real-time prices of precious metals (Gold, Silver, Platinum, Palladium).
-The app is built with Redux Toolkit + Redux-Saga for state management and API handling, and React Navigation for screen navigation.
+A React Native mobile application that displays real-time prices of precious metals including Gold, Silver, Platinum, and Palladium.
+The app is built with Redux Toolkit and Redux-Saga for robust state management and asynchronous API handling, while React Navigation powers smooth navigation between screens.
+
+This app provides a clean, modern, and responsive UI where each metal has its own card with live updates, error handling, and detailed information on selection.
 
 🚀 Features
 
-📊 Fetch and display real-time metal prices (24k price).
+📊 Real-time Metal Prices
+Fetches and displays 24K price for multiple metals (Gold, Silver, Platinum, Palladium) directly from GoldAPI.
 
-⏳ Each metal shows its own loader until the data is fetched.
+⏳ Independent Loaders
+Each card has its own loader, ensuring the user sees live progress for individual metals instead of blocking the entire screen.
 
-🕒 Shows time & date for the price fetched.
+🕒 Timestamps Included
+Alongside prices, the time and date of the last updated price is displayed so users know when data was last refreshed.
 
-🔄 Handles API errors (shows error messages when request fails).
+🔄 Error Handling
 
-📑 Detail Screen for each metal with:
+Each metal card handles errors separately (e.g., network failure, API errors).
 
-Current 24k Price
+Displays a readable error message directly inside the card instead of breaking the entire app.
+
+📑 Detail Screen
+Tapping on a metal card navigates to a Detail Screen, where the user can view:
+
+Current 24K Price
 
 Previous Close Price
 
 Previous Open Price
 
-Date & Time
+Date of the data
 
-🎨 Clean & attractive UI with styled cards.
+Exact Time of last update
 
-⛓ Powered by GoldAPI for fetching data.
+🎨 Polished UI
+
+Cards with shadows, rounded corners, and light background colors.
+
+Intro/Splash screen that enhances the user experience with branding.
+
+Responsive design that adapts well on both Android and iOS.
 
 🛠️ Tech Stack
 
-React Native (0.80.2)
+React Native (0.80.2) – Core framework for building cross-platform mobile apps.
 
-React (19.1.0)
+React (19.1.0) – UI library powering components.
 
-Redux Toolkit (2.8.2)
+Redux Toolkit (2.8.2) – Modern Redux state management with slices and actions.
 
-Redux-Saga (1.2.3)
+Redux-Saga (1.2.3) – Handles asynchronous flows like API calls.
 
-React Navigation (7.x)
+React Navigation (7.x) – Smooth navigation between screens (Stack navigation).
 
-Axios (for API calls)
+Axios (1.11.0) – For API requests and error handling.
 
 📖 Approach
+🔹 State Management
 
-State Management:
+Implemented Redux Toolkit slice (metalsSlice) to manage data, loading states, and error states.
 
-Used Redux Toolkit slices to manage metal state (data, loading, error).
+Designed independent flags for each metal (Gold, Silver, Platinum, Palladium) so that the loading/error of one doesn’t block others.
 
-Each metal has independent loading/error flags.
+🔹 Async Handling with Saga
 
-Async Handling:
+Used Redux-Saga watchers (takeLatest) to handle API calls.
 
-Used Redux-Saga (takeLatest) to handle API calls.
+Implemented sequential API fetching with yield call to avoid hitting API rate limits (GoldAPI has strict free-tier limits).
 
-Implemented sequential fetching to avoid hitting API rate limits.
+Each request dispatches either fetchMetalSuccess (on success) or fetchMetalFailure (on error).
 
-Navigation:
+🔹 Navigation
 
-Used React Navigation (Stack) for:
+Used React Navigation Stack for a smooth multi-screen experience:
 
-IntroScreen → splash screen (3 sec)
+IntroScreen → Splash/branding screen shown for 3 seconds (header hidden).
 
-HomeScreen → metal list
+HomeScreen → Main dashboard showing all metal prices in cards.
 
-DetailScreen → full details
+DetailScreen → Shows full details of the selected metal.
 
-Error Handling:
+🔹 Error Handling
 
-API errors caught in saga and displayed on UI per metal.
+All API errors are caught in Saga and then displayed in the respective card.
 
-Loading indicator shown until data is available.
+Each card shows its own error message ("Request failed with status code XXX").
 
-UI:
+Ensures the app never crashes even if one or more metals fail to fetch.
 
-Cards with shadow, rounded corners, and background colors.
+🔹 UI/UX Design
 
-Each card shows metal name, price, and time.
+Used FlatList for smooth scrolling of metal cards.
+
+Cards UI:
+
+Background color with shadows.
+
+Rounded corners for a modern look.
+
+Each card shows metal name, current price, and last update time.
+
+Detail Screen styled with info cards to neatly separate each data point.
+
+Splash Screen provides branding ("Metal Prices") before loading the app.
 
 ⚠️ Challenges
 
-Hitting API too quickly (429 errors → Too Many Requests).
+API Rate Limit (429 Too Many Requests)
 
-✅ Fixed by fetching sequentially in saga.
+GoldAPI restricts free accounts to a limited number of requests per minute.
 
-GoldAPI free plan sometimes returns 403 (Forbidden) if key is invalid/expired.
+✅ Fixed by switching from parallel requests (yield all) to sequential requests (for loop with yield call).
 
-✅ Added proper error messages.
+API Authentication (403 Forbidden)
+
+If the API key is invalid or expired, GoldAPI rejects requests.
+
+✅ Handled with proper error messages at the card level.
 
 ✅ Future Enhancements
 
-Add more metals (Rhodium, Copper, etc.).
+Add more metals like Rhodium, Copper, Nickel, Aluminium.
 
-Integrate charts for price trends.
+Show price charts (e.g., 7-day, 30-day trends) using chart libraries.
 
-Dark mode UI.
+Implement dark mode toggle for better UX.
 
-Persist data offline with AsyncStorage.
+✨ This project is part of the Simplify Money Internship Assignment (Front End Track).
+Built with ❤️ by Divyanshi Awasthi.
+
+Add offline persistence with AsyncStorage or SQLite so last fetched data remains available without internet.
+
+Auto-refresh data every few minutes for live market updates.
