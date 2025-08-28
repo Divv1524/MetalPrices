@@ -128,9 +128,9 @@ Show price charts (e.g., 7-day, 30-day trends) using chart libraries.
 
 Implement dark mode toggle for better UX.
 
-✨ This project is part of the Simplify Money Internship Assignment (Front End Track).
-Built with ❤️ by Divyanshi Awasthi.
-
 Add offline persistence with AsyncStorage or SQLite so last fetched data remains available without internet.
 
 Auto-refresh data every few minutes for live market updates.
+
+✨ This project is part of the Simplify Money Internship Assignment (Front End Track).
+Built with ❤️ by Divyanshi Awasthi.
